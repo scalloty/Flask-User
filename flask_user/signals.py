@@ -43,3 +43,5 @@ user_reset_password = _signals.signal('user.user_reset_password')
 # Signal sent just after a user sent an invitation  # TODO: Not yet implemented
 user_sent_invitation = _signals.signal('user.user_sent_invitation')
 
+# Signal sent just after a unsuccessful login # add by scalloty
+unsuccessful_login = _signals.signal('user.unsuccessful_login')

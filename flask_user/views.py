@@ -255,6 +255,14 @@ def login():
         if user:
             # Log user in
             return _do_login_user(user, login_form.next.data, login_form.remember_me.data)
+    
+    if not user:
+	# Send unsuccessful_login signal
+	signals.unsuccessful_login.send(current_app._get_current_object(),email=login_form.username.data)
+    
+    if request.method=='POST' and login_form.validate()==False:
+	# Send unsuccessful_login signal
+	signals.unsuccessful_login.send(current_app._get_current_object(),email=login_form.username.data)    
 
     # Process GET or invalid POST
     return render_template(user_manager.login_template,
